@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Megahand app</string>
+    <string name="service">О сервисе</string>
+    <string name="shop">Магазины</string>
+    <string name="article">Статья</string>
+    <string name="news">Новости</string>
+    <string name="main">Главная</string>
+    <string name="help">Помощь</string>
+    <string name="job">Вакансия</string>
+    <string name="other">Другое</string>
+    <string name="collection">Коллекция</string>
+    <string name="collection_man">Мужская</string>
+    <string name="collection_girl">Женская</string>
+    <string name="collection_children">Детская</string>
+</resources>
