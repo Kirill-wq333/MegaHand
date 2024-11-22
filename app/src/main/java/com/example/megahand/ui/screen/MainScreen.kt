@@ -92,9 +92,19 @@ fun MainContent(
 
     val vm = viewModel<MainViewModel>()
     val stories by vm.stories.collectAsState()
+    val collection by vm.collection.collectAsState()
+    val brand by vm.brands.collectAsState()
 
     LaunchedEffect(Unit) {
         vm.getStories()
+    }
+
+    LaunchedEffect(Unit) {
+        vm.getCollection()
+    }
+
+    LaunchedEffect(Unit) {
+        vm.getBrands()
     }
 
     Box(
@@ -119,11 +129,11 @@ fun MainContent(
             Spacer(modifier = Modifier.height(30.dp))
             FreeCouponBanner(banner = "https://mhand.ru/media/banner_app/Group_775_2.png")
             Spacer(modifier = Modifier.height(30.dp))
-            Collections(navController = rememberNavController())
+            Collections(navController = rememberNavController(), collection)
             Spacer(modifier = Modifier.height(30.dp))
             Banner()
             Spacer(modifier = Modifier.height(30.dp))
-            BrandsList()
+            BrandsList(brand)
         }
     }
 }
@@ -360,6 +370,7 @@ fun ServiceAndHelpBottoms(
 @Composable
 fun Collections(
     navController: NavHostController,
+    collection: List<CollectionItem>
 ) {
     Box(
         modifier = Modifier
@@ -391,57 +402,20 @@ fun Collections(
         startDestination = "Girl"
     ) {
         composable("Girl") {
-            val collectionGirl = listOf(
-                CollectionItem("https://mhand.ru/media/collections/DSC01322_JuyccPb.jpg"),
-                CollectionItem("https://mhand.ru/media/collections/DSC01293_LUX6zQ5.jpg"),
-                CollectionItem("https://mhand.ru/media/collections/DSC01429_MnjGCvf.jpg"),
-                CollectionItem("https://mhand.ru/media/collections/DSC01595_zM3TAEc.jpg"),
-                CollectionItem("https://mhand.ru/media/collections/DSC01612_YAkVh75.jpg"),
-                CollectionItem("https://mhand.ru/media/collections/DSC01616_VwUxEZM.jpg")
-            )
             LazyRow(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(15.dp)
             ) {
-                items(collectionGirl) { item ->
+                items(collection) { item ->
                     Collection(collectionImage = item.image)
                 }
             }
         }
         composable("Man") {
-            val collectionMan = listOf(
-                CollectionItem("https://mhand.ru/media/collections/DSC01774.jpg"),
-                CollectionItem("https://mhand.ru/media/collections/DSC01736.jpg"),
-                CollectionItem("https://mhand.ru/media/collections/DSC01672.jpg"),
-                CollectionItem("https://mhand.ru/media/collections/DSC01386.jpg"),
-                CollectionItem("https://mhand.ru/media/collections/DSC01698.jpg"),
-                CollectionItem("https://mhand.ru/media/collections/DSC01791.jpg")
-            )
-            LazyRow(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(15.dp)
-            ) {
-                items(collectionMan) { item ->
-                    Collection(collectionImage = item.image)
-                }
-            }
+
         }
         composable("Children") {
-            val collectionChildren = listOf(
-                CollectionItem("https://mhand.ru/media/collections/DSC01333_aQXQeqX.jpg"),
-                CollectionItem("https://mhand.ru/media/collections/DSC01355_fBvfQkb.jpg"),
-                CollectionItem("https://mhand.ru/media/collections/DSC01455_HyRI3dJ.jpg"),
-                CollectionItem("https://mhand.ru/media/collections/DSC01510_OcD4Nd3.jpg"),
-                CollectionItem("https://mhand.ru/media/collections/DSC01629_lD3ENsa.jpg")
-            )
-            LazyRow(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(15.dp)
-            ) {
-                items(collectionChildren) { item ->
-                    Collection(collectionImage = item.image)
-                }
-            }
+
         }
     }
 }
@@ -501,22 +475,15 @@ fun Banner(){
 
 @Composable
 fun BrandsList(
+    brand: List<BrandItem>
 ) {
-    val brandsList = listOf(
-        BrandItem("https://mhand.ru/media/brands_logo/1969_1.png"),
-        BrandItem("https://mhand.ru/media/brands_logo/Blind_Date.png"),
-        BrandItem("https://mhand.ru/media/brands_logo/Diesel_logo_1.svg"),
-        BrandItem("https://mhand.ru/media/brands_logo/Gustav.png"),
-        BrandItem("https://mhand.ru/media/brands_logo/Hanzhifeng.png"),
-        BrandItem("https://mhand.ru/media/brands_logo/Hudson.png"),
-    )
 
     LazyRow(
         modifier = Modifier,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start
     ) {
-        items(brandsList){ item  ->
+        items(brand){ item  ->
             BrandBox(
                 brandImage = item.image
             )

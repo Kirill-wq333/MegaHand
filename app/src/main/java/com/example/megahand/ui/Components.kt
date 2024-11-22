@@ -4,9 +4,11 @@ data class StoriesItem(
     val image: String,
     val name: String
 )
+
 data class CollectionItem(
-    val image: String
+    val image: List<String>
 )
+
 data class BrandItem(
     val image: String
 )

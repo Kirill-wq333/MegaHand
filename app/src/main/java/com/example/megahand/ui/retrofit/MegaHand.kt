@@ -7,8 +7,11 @@ interface MegaHand {
     suspend fun getStories(): Array<StoriesResponse>
 
     @GET("collections/")
-    suspend fun getCollection():CollectionsResponse
+    suspend fun getCollection():Array<CollectionsResponse>
 
     @GET("news/")
-    suspend fun getNews():NewsResponse
+    suspend fun getNews(): Array<NewsResponse>
+
+    @GET("brands/")
+    suspend fun getBrands(): Array<BrandsResponse>
 }

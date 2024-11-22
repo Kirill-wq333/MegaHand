@@ -28,7 +28,7 @@ import com.example.megahandapp.R
 
 @Composable
 fun Collection(
-    collectionImage: String
+    collectionImage: List<String>
 ) {
     Box(
         modifier = Modifier
@@ -55,17 +55,17 @@ fun BottomCollection(
     Row(
         horizontalArrangement = Arrangement.Center
     ) {
-        CollectionGirl(
+        Collections(
             text = stringResource(R.string.collection_girl),
             isSelected = currentRoute == "Girl",
             onSelect = {navController.navigate("Girl")}
         )
-        CollectionMan(
+        Collections(
             text = stringResource(R.string.collection_man),
             isSelected = currentRoute == "Man",
             onSelect = {navController.navigate("Man")}
         )
-        CollectionChildren(
+        Collections(
             text = stringResource(R.string.collection_children),
             isSelected = currentRoute == "Children",
             onSelect = {navController.navigate("Children")}
@@ -74,7 +74,7 @@ fun BottomCollection(
 }
 
 @Composable
-fun CollectionMan(
+fun Collections(
     modifier: Modifier = Modifier,
     text: String,
     isSelected: Boolean,
@@ -84,7 +84,6 @@ fun CollectionMan(
         if (isSelected) Color(0xFFE7D52F) else Color(0xFF46423E).copy(0.05f)
     val colorText =
         if (isSelected) Color(0xFF46423E) else Color(0xFF46423E).copy(0.4f)
-
 
     Box(
         modifier = modifier
@@ -107,80 +106,4 @@ fun CollectionMan(
     }
 }
 
-@Composable
-fun CollectionGirl(
-    text: String,
-    isSelected: Boolean,
-    onSelect: () -> Unit
-) {
 
-    val borderColor =
-        if (isSelected) Color(0xFFE7D52F) else Color(0xFF46423E).copy(0.05f)
-    val colorText =
-        if (isSelected) Color(0xFF46423E) else Color(0xFF46423E).copy(0.4f)
-
-
-    Box(
-        modifier = Modifier
-            .width(120.dp)
-            .height(30.dp)
-            .border(
-                width = 1.dp,
-                color = borderColor,
-                shape = RoundedCornerShape(
-                    topStart = 8.dp,
-                    topEnd = 0.dp,
-                    bottomStart = 8.dp,
-                    bottomEnd = 0.dp
-                )
-            )
-            .clickable(onClick = onSelect),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = text,
-            fontSize = 14.sp,
-            color = colorText,
-            fontFamily = FontFamily(listOf(Font(R.font.manrope_semibold))),
-            fontWeight = FontWeight.SemiBold
-        )
-    }
-}
-@Composable
-fun CollectionChildren(
-    text: String,
-    isSelected: Boolean,
-    onSelect: () -> Unit
-) {
-
-    val borderColor =
-        if (isSelected) Color(0xFFE7D52F) else Color(0xFF46423E).copy(0.05f)
-    val colorText =
-        if (isSelected) Color(0xFF46423E) else Color(0xFF46423E).copy(0.4f)
-
-    Box(
-        modifier = Modifier
-            .width(120.dp)
-            .height(30.dp)
-            .border(
-                width = 1.dp,
-                color = borderColor,
-                shape = RoundedCornerShape(
-                    topStart = 0.dp,
-                    topEnd = 8.dp,
-                    bottomStart = 0.dp,
-                    bottomEnd = 8.dp
-                )
-            )
-            .clickable(onClick = onSelect),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = text,
-            fontSize = 14.sp,
-            color = colorText,
-            fontFamily = FontFamily(listOf(Font(R.font.manrope_semibold))),
-            fontWeight = FontWeight.SemiBold
-        )
-    }
-}
