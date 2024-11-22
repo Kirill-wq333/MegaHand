@@ -24,6 +24,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -34,6 +35,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -48,7 +50,26 @@ import coil3.compose.AsyncImage
 import com.example.megahandapp.R
 
 
+@Composable
+fun NewScreen(
+    navController: NavHostController
+){
+    val  scrollState = rememberScrollState()
 
+    Scaffold(
+        topBar = {
+            Header(
+                nameCategory = stringResource(R.string.news),
+                icon = ImageVector.vectorResource(R.drawable.chevron_left),
+                chevronLeftOnClick = {navController.navigate("Main")}
+            )
+        }
+    ) {  padding ->
+        Box(modifier = Modifier.padding(padding)) {
+            CenterNew(scrollState = scrollState)
+        }
+    }
+}
 
 
 @Composable

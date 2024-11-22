@@ -39,147 +39,35 @@ fun BottomBar(
         val currentRoute = navBackStackEntry.value?.destination?.route
 
 
-        BottomNavigationItem(
+        BottomNavItem(
             selected = currentRoute == "Main",
-            onClick = { navController.navigate("Main") },
-            icon = {
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.home),
-                    contentDescription = null,
-                    tint = Color(0xFF46423E)
-                )
-            },
-            label = {
-                Text(
-                    text = "Главная",
-                    fontSize = 10.sp,
-                    color = Color(0xFF46423E),
-                    fontWeight = FontWeight.Medium,
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_medium)))
-                )
-            },
-            alwaysShowLabel = true,
-            modifier = Modifier
-                .border(
-                    width = if(currentRoute == "Main") 1.dp else 0.dp,
-                    color = if(currentRoute == "Main") Color(0xFFE7D52F) else Color.White,
-                    shape =  RoundedCornerShape(
-                        topEnd = 8.dp,
-                        topStart = 8.dp,
-                        bottomStart = 16.dp,
-                        bottomEnd = 8.dp
-                    )
-                )
+            onClick = { navController.navigate("Main")},
+            image = ImageVector.vectorResource(R.drawable.home),
+            text = "Главная",
         )
-        BottomNavigationItem(
+        BottomNavItem(
             selected = false,
             onClick = { },
-            icon = {
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.card),
-                    contentDescription = null,
-                    tint = Color(0xFF46423E)
-                )
-            },
-            label = {
-                Text(
-                    text = "Моя карта",
-                    fontSize = 10.sp,
-                    color = Color(0xFF46423E),
-                    fontWeight = FontWeight.Medium,
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_medium)))
-                )
-            },
-            alwaysShowLabel = true
+            image = ImageVector.vectorResource(R.drawable.card),
+            text = "Моя Карта",
         )
-        BottomNavigationItem(
+        BottomNavItem(
             selected = currentRoute == "Shop",
-            onClick = { navController.navigate("Shop") },
-            icon = {
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.shop),
-                    contentDescription = null,
-                    tint = Color(0xFF46423E)
-                )
-            },
-            label = {
-                Text(
-                    text = "Магазины",
-                    fontSize = 10.sp,
-                    color = Color(0xFF46423E),
-                    fontWeight = FontWeight.Medium,
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_medium)))
-                )
-            },
-            alwaysShowLabel = true,
-            modifier = Modifier
-                .border(
-                    width = if(currentRoute == "Shop") 1.dp else 0.dp,
-                    color = if(currentRoute == "Shop") Color(0xFFE7D52F) else Color.White,
-                    shape =  RoundedCornerShape(
-                        topEnd = 8.dp,
-                        topStart = 8.dp,
-                        bottomStart = 16.dp,
-                        bottomEnd = 8.dp
-                    )
-                )
+            onClick = { navController.navigate("Shop")},
+            image = ImageVector.vectorResource(R.drawable.shop),
+            text = "Магазины",
         )
-        BottomNavigationItem(
+        BottomNavItem(
             selected = false,
             onClick = { },
-            icon = {
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.account),
-                    contentDescription = null,
-                    tint = Color(0xFF46423E)
-                )
-            },
-            label = {
-                Text(
-                    text = "Профиль",
-                    fontSize = 10.sp,
-                    color = Color(0xFF46423E),
-                    fontWeight = FontWeight.Medium,
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_medium)))
-                )
-            },
-            alwaysShowLabel = true,
+            image = ImageVector.vectorResource(R.drawable.account),
+            text = "Профиль",
         )
-        BottomNavigationItem(
+        BottomNavItem(
             selected = false,
-            onClick = { scope.launch { sheetState.show() } },
-            icon = {
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.other),
-                    contentDescription = null,
-                    tint = Color(0xFF46423E)
-                )
-            },
-            label = {
-                Text(
-                    text = "Другое",
-                    fontSize = 10.sp,
-                    color = Color(0xFF46423E),
-                    fontWeight = FontWeight.Medium,
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_medium)))
-                )
-            },
-            alwaysShowLabel = true,
-        )
-        BottomNavItem(
-            onClick = { navController.navigate("") }
-        )
-        BottomNavItem(
-            onClick = { navController.navigate("") }
-        )
-        BottomNavItem(
-            onClick = { navController.navigate("") }
-        )
-        BottomNavItem(
-            onClick = { navController.navigate("") }
-        )
-        BottomNavItem(
-            onClick = { scope.launch { sheetState.show()} }
+            onClick = { scope.launch { sheetState.show() }},
+            image = ImageVector.vectorResource(R.drawable.other),
+            text = "Другое",
         )
     }
 }
@@ -187,23 +75,25 @@ fun BottomBar(
 @Composable
 fun RowScope.BottomNavItem(
     modifier: Modifier = Modifier,
-    // ...
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    selected: Boolean,
+    image: ImageVector,
+    text: String
 ) {
 
     BottomNavigationItem(
-        selected = false,
-        onClick = onClick,
+        selected = selected,
+        onClick = { onClick() },
         icon = {
             Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.other),
+                imageVector = image,
                 contentDescription = null,
                 tint = Color(0xFF46423E)
             )
         },
         label = {
             Text(
-                text = "Другое",
+                text = text,
                 fontSize = 10.sp,
                 color = Color(0xFF46423E),
                 fontWeight = FontWeight.Medium,
@@ -211,5 +101,16 @@ fun RowScope.BottomNavItem(
             )
         },
         alwaysShowLabel = true,
+        modifier = Modifier
+            .border(
+                width = if (selected) 1.dp else 0.dp,
+                color = if (selected) Color(0xFFE7D52F) else Color.White,
+                shape = RoundedCornerShape(
+                    topEnd = 8.dp,
+                    topStart = 8.dp,
+                    bottomStart = 16.dp,
+                    bottomEnd = 8.dp
+                )
+            )
     )
 }

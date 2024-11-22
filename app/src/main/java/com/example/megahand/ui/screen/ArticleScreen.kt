@@ -18,6 +18,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -32,9 +34,29 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
 import com.example.megahandapp.R
 
+@Composable
+fun ArticleScreen(
+    navController: NavHostController,
+    scrollState: ScrollState
+){
+    Scaffold(
+        topBar = {
+            Header(
+                nameCategory = stringResource(R.string.article),
+                icon = ImageVector.vectorResource(R.drawable.chevron_left),
+                chevronLeftOnClick = {navController.navigate("News")}
+            )
+        }
+    ) {  padding ->
+        Box(modifier = Modifier.padding(padding)) {
+            CenterArticle(scrollState = scrollState)
+        }
+    }
+}
 
 
 @Composable

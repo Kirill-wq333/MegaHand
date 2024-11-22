@@ -23,6 +23,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -56,6 +57,30 @@ import com.example.megahand.ui.BrandItem
 import com.example.megahand.ui.CollectionItem
 import com.example.megahand.ui.Stories
 import com.example.megahand.ui.StoriesItem
+
+@Composable
+fun MainScreen(
+    navController: NavHostController
+){
+    Scaffold(
+        topBar = {
+            Header(
+                nameCategory = "",
+                icon = ImageVector.vectorResource(R.drawable.logo_minimized),
+                chevronLeftOnClick = {}
+            )
+        }
+    ) { padding ->
+        Box(
+            modifier = Modifier
+                .padding(padding),
+        ) {
+            MainContent(
+                navController = navController
+            )
+        }
+    }
+}
 
 
 @Composable
@@ -106,17 +131,6 @@ fun MainContent(
 
 @Composable
 fun ListStories(stories: List<StoriesItem>) {
-//    val list = listOf(
-//        StoriesItem(
-//            "https://mhand.ru/media/stories/%D0%94%D0%A0%D0%9E%D0%9F.png",
-//            "ДРОП теперь каждый день"),
-//        StoriesItem(
-//            "https://mhand.ru/media/stories/%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD_MHAND.png",
-//            "Теперь в телеграм-канале"),
-//        StoriesItem(
-//            "https://mhand.ru/media/stories/300_%D0%B1%D0%BE%D0%BD%D1%83%D1%81%D0%BE%D0%B2.png",
-//            "300"),
-//        )
     LazyRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp)
@@ -192,7 +206,7 @@ fun LoyaltyCard() {
                         )
                 )
                 Spacer(modifier = Modifier.height(15.dp))
-                HorizontalDivider(modifier = Modifier.fillMaxWidth())
+                Box(modifier = Modifier.fillMaxWidth().height(1.dp).background(color = Color(0xFF46423E).copy(0.1f)))
                 Spacer(modifier = Modifier.height(20.dp))
                 Row(
                     modifier = Modifier
