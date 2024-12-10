@@ -14,4 +14,10 @@ interface MegaHand {
 
     @GET("brands/")
     suspend fun getBrands(): Array<BrandsResponse>
+
+    @GET("banners/")
+    suspend fun getBanners(): Array<BannersResponse>
+
+    @GET("cities/")
+    suspend fun getCities(): Array<CitiesResponse>
 }

@@ -86,7 +86,7 @@ fun Header(
                             shape = RoundedCornerShape(8.dp)
                         ),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    horizontalArrangement = Arrangement.Center
                 ) {
                     Box(
                         modifier = Modifier
@@ -108,6 +108,11 @@ fun Header(
                         color = Color(0xFF46423E),
                         fontWeight = FontWeight.SemiBold,
                         fontFamily = FontFamily(listOf(Font(R.font.manrope_semibold))),
+                        modifier = Modifier
+                            .padding(
+                                start = 10.dp,
+                                end = 14.dp,
+                            )
                     )
                 }
                 Row(

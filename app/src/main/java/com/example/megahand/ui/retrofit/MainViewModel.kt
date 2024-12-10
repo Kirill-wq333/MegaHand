@@ -1,11 +1,12 @@
 package com.example.megahandapp.ui.retrofit
 
-import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.megahand.ui.BrandItem
-import com.example.megahand.ui.CollectionItem
-import com.example.megahand.ui.StoriesItem
+import com.example.megahand.ui.retrofit.BannersItem
+import com.example.megahand.ui.retrofit.BrandItem
+import com.example.megahand.ui.retrofit.CitiesItem
+import com.example.megahand.ui.retrofit.CollectionItem
+import com.example.megahand.ui.retrofit.StoriesItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,6 +22,12 @@ class MainViewModel : ViewModel() {
 
     private val _brands: MutableStateFlow<List<BrandItem>> = MutableStateFlow(listOf())
     val brands = _brands.asStateFlow()
+
+    private val _banners: MutableStateFlow<List<BannersItem>> = MutableStateFlow(listOf())
+    val banners = _banners.asStateFlow()
+
+    private val  _cities: MutableStateFlow<List<CitiesItem>> = MutableStateFlow(listOf())
+    val cities = _cities.asStateFlow()
 
     fun getStories() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -45,4 +52,21 @@ class MainViewModel : ViewModel() {
             _brands.emit(brandsList)
         }
     }
+
+    fun getBanners(){
+        viewModelScope.launch(Dispatchers.IO) {
+            val rawBanners = RetrofitClient.apiService.getBanners()
+            val bannersList = rawBanners.map { BannersItem(photo = it.photo) }
+            _banners.emit(bannersList)
+        }
+    }
+
+    fun getCities(){
+        viewModelScope.launch(Dispatchers.IO) {
+            val rawCities = RetrofitClient.apiService.getCities()
+            val citiesList = rawCities.map { CitiesItem(citi = it.city) }
+            _cities.emit(citiesList)
+        }
+    }
+
 }

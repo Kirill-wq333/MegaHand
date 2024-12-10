@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.example.megahandapp.ui
 
 import android.os.Bundle
@@ -8,12 +10,16 @@ import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.material.ModalBottomSheetLayout
-import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Surface
-import androidx.compose.material.rememberModalBottomSheetState
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
@@ -24,9 +30,10 @@ import com.example.megahandapp.ui.screen.MainScreen
 import com.example.megahandapp.ui.screen.NewScreen
 import com.example.megahandapp.ui.screen.ServiceScreen
 import com.example.megahandapp.ui.screen.ShopScreen
-import com.example.megahand.ui.BottomBar
-import com.example.megahand.ui.BottomSheet
+import com.example.megahand.ui.bottom.BottomBar
+import com.example.megahand.ui.bottom.BottomSheet
 import com.example.megahandapp.ui.theme.MegahandAppTheme
+
 
 
 class MainActivity : ComponentActivity() {
@@ -44,13 +51,14 @@ class MainActivity : ComponentActivity() {
 
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MegaHand(
     scrollState: ScrollState
 ) {
-    val sheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+    var openBottomSheet by rememberSaveable { mutableStateOf(false) }
     val navController = rememberNavController()
-
+    val sheetState = rememberModalBottomSheetState()
 
     Scaffold(
         bottomBar = { BottomBar(navController = navController, sheetState = sheetState) },
@@ -76,17 +84,17 @@ fun MegaHand(
                     ArticleScreen(navController = navController, scrollState = scrollState)
                 }
             }
-
-            ModalBottomSheetLayout(
-                sheetState = sheetState,
-                sheetContent = {
+            if(openBottomSheet) {
+                ModalBottomSheet(
+                    onDismissRequest = { openBottomSheet = false },
+                    sheetState = sheetState,
+                ) {
                     BottomSheet(
                         sheetState = sheetState,
                         navController = navController
                     )
-                },
-                sheetGesturesEnabled = false,
-            ) {}
+                }
+            }
         }
     }
 }

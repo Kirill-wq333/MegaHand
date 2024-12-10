@@ -1,5 +1,6 @@
 package com.example.megahandapp.ui.retrofit
 
+import com.yandex.mapkit.MapKitFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

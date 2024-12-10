@@ -18,8 +18,8 @@ data class BannersResponse(
 )
 
 data class CollectionsResponse(
-    val forWho: Int,
-    val wear: String,
+    @SerializedName("for_Who")val forWho: Int,
+    @SerializedName("wear")val wear: String,
     val description: String,
     val images: List<String>
 )
@@ -31,7 +31,9 @@ data class BrandsResponse(
 )
 
 data class CitiesResponse(
-     val city: String
+     val id: Int,
+     val city: String,
+     val application: Boolean
 )
 
 data class NewsResponse(
