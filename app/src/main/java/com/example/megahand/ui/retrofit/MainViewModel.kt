@@ -1,12 +1,7 @@
-package com.example.megahandapp.ui.retrofit
+package com.example.megahand.ui.retrofit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.megahand.ui.retrofit.BannersItem
-import com.example.megahand.ui.retrofit.BrandItem
-import com.example.megahand.ui.retrofit.CitiesItem
-import com.example.megahand.ui.retrofit.CollectionItem
-import com.example.megahand.ui.retrofit.StoriesItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

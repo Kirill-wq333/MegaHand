@@ -1,4 +1,4 @@
-package com.example.megahandapp.ui.checking
+package com.example.megahand.ui.checking
 
 //import android.util.Log
 //import androidx.compose.animation.core.Animatable

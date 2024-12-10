@@ -1,4 +1,4 @@
-package com.example.megahandapp.ui.screen
+package com.example.megahand.ui.screen.mainScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -51,14 +51,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import coil3.compose.AsyncImage
+import com.example.megahand.ui.Header
 import com.example.megahand.ui.list.Collection
 import com.example.megahandapp.R
-import com.example.megahandapp.ui.retrofit.MainViewModel
 import com.example.megahand.ui.list.BottomCollection
 import com.example.megahand.ui.retrofit.BrandItem
 import com.example.megahand.ui.retrofit.CollectionItem
 import com.example.megahand.ui.list.Stories
 import com.example.megahand.ui.retrofit.BannersItem
+import com.example.megahand.ui.retrofit.MainViewModel
 import com.example.megahand.ui.retrofit.StoriesItem
 
 @Composable

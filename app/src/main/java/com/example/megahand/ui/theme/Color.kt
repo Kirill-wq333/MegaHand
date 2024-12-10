@@ -1,4 +1,4 @@
-package com.example.megahandapp.ui.theme
+package com.example.megahand.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

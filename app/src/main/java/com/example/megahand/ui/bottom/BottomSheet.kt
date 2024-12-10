@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package com.example.megahand.ui.bottom
 
 
@@ -133,6 +131,7 @@ fun BottomSheet(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun SheetPreview() {

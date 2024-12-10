@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.example.megahandapp.ui
+package com.example.megahand.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.material.Surface
+import androidx.compose.material3.Surface
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.ModalBottomSheet
@@ -25,14 +25,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.megahandapp.ui.screen.ArticleScreen
-import com.example.megahandapp.ui.screen.MainScreen
-import com.example.megahandapp.ui.screen.NewScreen
-import com.example.megahandapp.ui.screen.ServiceScreen
-import com.example.megahandapp.ui.screen.ShopScreen
+import com.example.megahand.ui.screen.articleScreen.ArticleScreen
+import com.example.megahand.ui.screen.mainScreen.MainScreen
+import com.example.megahand.ui.screen.newsScreen.NewScreen
+import com.example.megahand.ui.screen.serviceScreen.ServiceScreen
+import com.example.megahand.ui.screen.shopScreen.ShopScreen
 import com.example.megahand.ui.bottom.BottomBar
 import com.example.megahand.ui.bottom.BottomSheet
-import com.example.megahandapp.ui.theme.MegahandAppTheme
+import com.example.megahand.ui.theme.MegahandAppTheme
 
 
 

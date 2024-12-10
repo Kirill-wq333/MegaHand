@@ -1,4 +1,4 @@
-package com.example.megahandapp.ui.screen
+package com.example.megahand.ui.screen.articleScreen
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
+import com.example.megahand.ui.Header
 import com.example.megahandapp.R
 
 @Composable

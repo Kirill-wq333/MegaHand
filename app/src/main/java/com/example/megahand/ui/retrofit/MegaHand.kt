@@ -1,4 +1,4 @@
-package com.example.megahandapp.ui.retrofit
+package com.example.megahand.ui.retrofit
 
 import retrofit2.http.GET
 

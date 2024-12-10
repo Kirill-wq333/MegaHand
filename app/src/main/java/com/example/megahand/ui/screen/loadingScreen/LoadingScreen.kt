@@ -1,4 +1,4 @@
-package com.example.megahandapp.ui.screen
+package com.example.megahand.ui.screen.loadingScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
